@@ -6,6 +6,9 @@ const UsuariosController = require('../controllers/usuarios');
 
 // definição das rotas
 router.get('/usuarios', UsuariosController.listarUsuarios); 
+router.post('/usuarios', UsuariosController.cadastrarUsuarios); 
+router.patch('/usuarios', UsuariosController.editarUsuarios); 
+router.delete('/usuarios', UsuariosController.apagarUsuarios); 
 // post
 // patch
 // delete
