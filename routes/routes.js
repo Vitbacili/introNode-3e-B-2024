@@ -6,9 +6,12 @@ const router = express.Router();
 const UsuariosController = require('../controllers/usuarios'); 
 const PlanoController = require('../controllers/plano'); 
 const AlunosController = require('../controllers/alunos'); 
-const ExerciciosController= require('../controllers/exercicios');
-const TipoUsuarioController= require('../controllers/TipoUsuario');
-
+const ExerciciosController = require('../controllers/exercicios');
+const TipoUsuarioController = require('../controllers/TipoUsuario');
+const TreinoController = require('../controllers/treino');
+const TreinoAlunoController = require('../controllers/TreinoAluno');
+const TreinoExerciciosController = require('../controllers/TreinoExercicios');
+const TreinoUsuarioExercicioController = require('../controllers/TreinoUsuarioExercicio');
 
 
 // definição das rotas
@@ -33,9 +36,32 @@ router.get('/exercicios', ExerciciosController.listarExercicios);
 router.post('/exercicios', ExerciciosController.cadastrarExercicios); 
 router.patch('/exercicios', ExerciciosController.editarExercicios); 
 
+
 router.get('/TipoUsuario', TipoUsuarioController.listarTipoUsuario); 
 router.post('/TipoUsuario', TipoUsuarioController.cadastrarTipoUsuario); 
 router.patch('/TipoUsuario', TipoUsuarioController.editarTipoUsuario); 
 router.delete('/TipoUsuario', TipoUsuarioController.apagarTipoUsuario); 
+
+
+router.get('/treino', TreinoController.listarTreino); 
+router.post('/treino', TreinoController.cadastrarTreino); 
+router.patch('/treino', TreinoController.editarTreino); 
+
+
+router.get('/TreinoAluno', TreinoAlunoController.listarTreinoAluno); 
+router.post('/TreinoAluno', TreinoAlunoController.cadastrarTreinoAluno); 
+router.patch('/TreinoAluno', TreinoAlunoController.editarTreinoAluno); 
+
+
+router.get('/TreinoExercicios', TreinoExerciciosController.listarTreinoExercicios); 
+router.post('/TreinoExercicios', TreinoExerciciosController.cadastrarTreinoExercicios); 
+router.patch('/TreinoExercicios', TreinoExerciciosController.editarTreinoExercicios); 
+router.delete('/TreinoExercicios', TreinoExerciciosController.apagarTreinoExercicios); 
+
+
+router.get('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.listarTreinoUsuarioExercicio); 
+router.post('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.cadastrarTreinoUsuarioExercicio); 
+router.patch('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.editarTreinoUsuarioExercicio); 
+router.delete('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.apagarTreinoUsuarioExercicio); 
 
 module.exports = router;
