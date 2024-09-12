@@ -1,15 +1,14 @@
 -- SELECT COM TODOS OS CAMPOS
-SELECT 	cod_usu, login_usu, senha_usu, ppd_valor, ppd_obs, ped_id, prd_id, ppd_status FROM pedido_produtos;
-SELECT prd_id, prd_nome, prd_valor, prd_unidade, ptp_id, prd_disponivel, prd_img, prd_destaque, prd_img_destaque, prd_descricao FROM produtos;
-SELECT ptp_id, ptp_nome, ptp_icone FROM produto_tipos; 
-SELECT mes_id, mes_nome, mes_status, mes_lugares, ped_id FROM mesas; 
-SELECT ped_id, ped_data, usu_id, cli_id, ped_tipo, ped_status, ped_desconto, ped_vlr_pago, ped_tp_pag, ped_pago FROM pedidos; 
-SELECT end_id, usu_id, end_logradouro, end_num, end_bairro, end_complemento, cid_id, end_principal FROM endereco_clientes; 
-SELECT cid_id, cid_nome, cid_uf FROM cidades;
-SELECT usu_id, cli_cel, cli_pts FROM clientes; 
-SELECT usu_id, usu_nome, usu_email, usu_dt_nasc, usu_senha, usu_tipo, usu_ativo FROM usuarios;
-SELECT ing_id, ing_nome, ing_img, ing_custo_adicional FROM ingredientes;
-SELECT prd_id, ing_id, prd_ing_adicional FROM produto_ingredientes;
+SELECT 	cod_usu, login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf FROM USUARIOS;
+SELECT 	cod_plano, descricao_plano, valor_plano, detalhes_plano FROM PLANO;
+SELECT cod_tipoUsuario, descricao FROM TipoUsuario; 
+SELECT cod_exe, nome_exe, descricao_exe, gif_exe FROM EXERCICIO; 
+SELECT cod_treino, descricao_treino, objetivo_treino FROM TREiNO; 
+SELECT cod_aln, cod_treino, cod_ta, data_inicio_ta FROM TreinoAluno; 
+SELECT cod_tue, cod_ta, cod_exe, carga_tue, series_tue, repeticoes_tue FROM TreinoUsuarioExercicio;
+SELECT cod_plano, cod_aln FROM Alunos; 
+SELECT cod_treino, cod_exe, series_te, repeticoes_te FROM TreinoExercicios;
+
 
 -- DROP DE TODAS AS TABELAS NA ORDEM DE EXCLUSÃO
 DROP TABLE pedido_produtos;
