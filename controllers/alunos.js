@@ -3,10 +3,20 @@ const db = require('../database/connection');
 module.exports = {
     async listarAlunos(request, response) {
         try {            
+
+            const sql = `SELECT
+             cod_plano , cod_aln
+             
+             FROM ALUNOS;` 
+             
+             const alunos = await db.query(sql);
+
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de alunos.', 
-                dados: null
+                dados: alunos[0]
             });
         } catch (error) {
             return response.status(500).json({

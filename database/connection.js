@@ -4,7 +4,7 @@ const bd_usuario = 'us_etim_122_g3'; // usuário
 const bd_senha = 'id0615'; // senha
 const bd_servidor = '10.67.22.216'; // servidor
 const bd_porta = '3306'; // porta
-const bd_banco = 'IronForce'; // nome do banco
+const bd_banco = 'bd_tcc_etim_122_g3'; // nome do banco
 let connection;
     
 const config = {

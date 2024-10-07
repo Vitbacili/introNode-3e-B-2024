@@ -81,4 +81,3 @@ CREATE TABLE treinousuarioexercicio (
   FOREIGN KEY (cod_exe) REFERENCES exercicio (cod_exe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-

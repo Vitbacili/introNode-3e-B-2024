@@ -3,6 +3,15 @@ const db = require('../database/connection');
 module.exports = {
     async listarPlano(request, response) {
         try {            
+
+            const sql = `SELECT
+             cod_plano, descricao_plano, valor_plano, detalhes_plano FROM PLANO;
+             
+             FROM PLANO;` 
+             
+             const usuarios = await db.query(sql);
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de plano.', 
