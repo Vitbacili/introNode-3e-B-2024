@@ -10,12 +10,14 @@ module.exports = {
              FROM USUARIOS;` 
              
              const usuarios = await db.query(sql);
+             const nItens = usuarios[0].length;
 
 
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de usuários.', 
-                dados: usuarios[0]
+                dados: usuarios[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({

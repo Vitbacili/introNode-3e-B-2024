@@ -3,10 +3,21 @@ const db = require('../database/connection');
 module.exports = {
     async listarTreinoExercicios(request, response) {
         try {            
+
+
+            const sql = `SELECT
+             cod_treino, cod_exe, series_te, repeticoes_te 
+             
+             FROM TREINOEXERCICIOS;` 
+             
+             const TreinoExercicios = await db.query(sql);
+             const nItens = TreinoExercicios[0].length;
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Treino dos Exercicios.', 
-                dados: null
+                dados: TreinoExercicios[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({

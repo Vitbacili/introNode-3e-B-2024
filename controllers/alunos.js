@@ -10,13 +10,14 @@ module.exports = {
              FROM ALUNOS;` 
              
              const alunos = await db.query(sql);
-
+             const nItens = alunos[0].length;
 
 
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de alunos.', 
-                dados: alunos[0]
+                dados: alunos[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({
@@ -27,7 +28,10 @@ module.exports = {
         }
     }, 
     async cadastrarAlunos(request, response) {
-        try {            
+        try {         
+            
+            const{ cod_plano, cod_aln} = request.body;
+            const sql = ``
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de alunos.', 

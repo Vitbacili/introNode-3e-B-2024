@@ -2,11 +2,20 @@ const db = require('../database/connection');
 
 module.exports = {
     async listarTreino(request, response) {
-        try {            
+        try {    
+            
+            const sql =
+    `SELECT cod_treino, descricao_treino, objetivo_treino FROM TREiNO; `;
+    
+    const treino = await db.query(sql);
+    const nItens = treino[0].length;
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Treino.', 
-                dados: null
+                dados: treino[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({

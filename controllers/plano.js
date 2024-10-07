@@ -5,17 +5,19 @@ module.exports = {
         try {            
 
             const sql = `SELECT
-             cod_plano, descricao_plano, valor_plano, detalhes_plano FROM PLANO;
+             cod_plano, descricao_plano, valor_plano, detalhes_plano
              
              FROM PLANO;` 
              
-             const usuarios = await db.query(sql);
+             const plano = await db.query(sql);
+             const nItens = plano[0].length;
 
 
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de plano.', 
-                dados: null
+                dados: plano[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({

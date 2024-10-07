@@ -2,11 +2,19 @@ const db = require('../database/connection');
 
 module.exports = {
     async listarExercicios(request, response) {
-        try {            
+        try { 
+            
+            const sql =
+    `SELECT cod_exe, nome_exe, descricao_exe, gif_exe FROM EXERCICIO; `;
+    
+    const Exercicios = await db.query(sql);
+    const nItens = Exercicios[0].length;
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de exercicios.', 
-                dados: null
+                dados: Exercicios[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({

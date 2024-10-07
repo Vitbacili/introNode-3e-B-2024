@@ -3,10 +3,18 @@ const db = require('../database/connection');
 module.exports = {
     async listarTipoUsuario(request, response) {
         try {            
+
+            const sql =
+    `SELECT cod_tipoUsuario, descricao FROM TipoUsuario;`;
+    
+    const TipoUsuario = await db.query(sql);
+    const nItens = TipoUsuario[0].length;
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de Tipos de Usuario.', 
-                dados: null
+                dados: TipoUsuario[0],
+                nItens
             });
         } catch (error) {
             return response.status(500).json({
