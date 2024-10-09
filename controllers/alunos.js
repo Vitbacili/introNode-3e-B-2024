@@ -31,11 +31,18 @@ module.exports = {
         try {         
             
             const{ cod_plano, cod_aln} = request.body;
-            const sql = ``
+            const sql = `INSERT INTO alunos ( cod_plano, cod_aln) 
+            VALUES (?,?)`;
+            const values =[ cod_plano, cod_aln];
+            const exeSql = await db.query(sql, values);
+            const usu_id = exeSql[0].insertId;
+
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de alunos.', 
-                dados: null
+                dados: usu_id
             });
         } catch (error) {
             return response.status(500).json({
