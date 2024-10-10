@@ -34,8 +34,8 @@ module.exports = {
             const sql = `INSERT INTO usuarios (cod_usu, login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf) 
             VALUES (?,?,?,?,?,?,?,?)`;
             const values =[ cod_usu, login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf];
-            const exeSql = await db.query(sql, values);
-            const usu_id = exeSql[0].insertId;
+            const execSql = await db.query(sql, values);
+            const usu_id = execSql[0].insertId;
 
 
 
