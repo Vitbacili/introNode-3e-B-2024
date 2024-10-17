@@ -3,6 +3,7 @@ CREATE TABLE tipousuario (
   cod_tipoUsuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   descricao VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+select * from tipousuario;
 
 -- Tabela USUARIOS
 CREATE TABLE usuarios (
@@ -24,6 +25,7 @@ CREATE TABLE plano (
   valor_plano DECIMAL(6,2),
   detalhes_plano VARCHAR(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+select * from plano;
 
 -- Tabela ALUNOS
 CREATE TABLE alunos (
@@ -32,6 +34,7 @@ CREATE TABLE alunos (
   FOREIGN KEY (cod_plano) REFERENCES plano (cod_plano),
   FOREIGN KEY (cod_aln) REFERENCES usuarios (cod_usu)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+select * from alunos;
 
 -- Tabela EXERCICIO
 CREATE TABLE exercicio (
@@ -40,14 +43,14 @@ CREATE TABLE exercicio (
   descricao_exe varchar(128) NOT NULL,
   gif_exe VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+select * from exercicio;
 -- Tabela TREINO
 CREATE TABLE treino (
   cod_treino INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   descricao_treino VARCHAR(50) NOT NULL,
   objetivo_treino VARCHAR(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+select * from treino;
 -- Tabela TREINOALUNO
 CREATE TABLE treinoaluno (
   cod_aln INT NOT NULL,
@@ -57,7 +60,7 @@ CREATE TABLE treinoaluno (
   FOREIGN KEY (cod_aln) REFERENCES alunos (cod_aln),
   FOREIGN KEY (cod_treino) REFERENCES treino (cod_treino)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+select * from treinoaluno;
 -- Tabela TREINOEXERCICIOS
 CREATE TABLE treinoexercicios (
   cod_treino INT NOT NULL,
@@ -68,7 +71,7 @@ CREATE TABLE treinoexercicios (
   FOREIGN KEY (cod_treino) REFERENCES treino (cod_treino),
   FOREIGN KEY (cod_exe) REFERENCES exercicio (cod_exe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+select * from treinoexercicios;
 -- Tabela TREINOUSUARIOEXERCICIO
 CREATE TABLE treinousuarioexercicio (
   cod_tue INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -80,4 +83,4 @@ CREATE TABLE treinousuarioexercicio (
   FOREIGN KEY (cod_ta) REFERENCES treinoaluno (cod_ta),
   FOREIGN KEY (cod_exe) REFERENCES exercicio (cod_exe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+select * from treinousuarioexercicio;

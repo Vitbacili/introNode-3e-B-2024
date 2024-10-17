@@ -53,11 +53,21 @@ module.exports = {
         }
     }, 
     async editarUsuarios(request, response) {
-        try {            
+        try { 
+              
+            const { cod_usu, login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf } = request.body;
+            const { usu_id } = request.params;
+
+            const sql = `UPDATE usuarios SET cod_usu = ?, login_usu = ?, senha_usu = ?, dataCadastro_usu = ?, dataBloqueio_usu = ?, 
+            cod_tipoUsuario = ?, nome_usu = ?, cpf = ? WHERE usu_id = ?;`;
+            
+            const values = [cod_usu, login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf, usu_id];
+            const atualizaDados = await db.query(sql, values);
+            
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Editar usuários.', 
-                dados: null
+                mensagem: 'Usuário ${usu_id} atualiazado com sucesso!', 
+                dados: atualizaDados[0].affectedRows
             });
         } catch (error) {
             return response.status(500).json({

@@ -26,10 +26,19 @@ module.exports = {
     }, 
     async cadastrarExercicios(request, response) {
         try {            
+
+            const{ cod_exe, nome_exe, descricao_exe, gif_exe} = request.body;
+            const sql = `INSERT INTO exercicio (cod_exe, nome_exe, descricao_exe, gif_exe) 
+            VALUES (?,?,?,?)`;
+            const values =[cod_exe, nome_exe, descricao_exe, gif_exe];
+            const exeSql = await db.query(sql, values);
+            const usu_id = exeSql[0].insertId;
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de Exercicios.', 
-                dados: null
+                dados: usu_id
             });
         } catch (error) {
             return response.status(500).json({

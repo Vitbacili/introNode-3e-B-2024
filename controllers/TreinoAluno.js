@@ -25,11 +25,20 @@ module.exports = {
         }
     }, 
     async cadastrarTreinoAluno(request, response) {
-        try {            
+        try {     
+            
+            const{cod_aln, cod_treino, cod_ta, data_inicio_ta} = request.body;
+            const sql = `INSERT INTO TreinoAluno (cod_aln, cod_treino, cod_ta, data_inicio_ta) 
+            VALUES (?,?,?,?)`;
+            const values =[ cod_aln, cod_treino, cod_ta, data_inicio_ta];
+            const execSql = await db.query(sql, values);
+            const usu_id = execSql[0].insertId;
+
+            
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de Treino do Aluno.', 
-                dados: null
+                dados: usu_id
             });
         } catch (error) {
             return response.status(500).json({

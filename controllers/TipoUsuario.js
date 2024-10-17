@@ -26,10 +26,19 @@ module.exports = {
     }, 
     async cadastrarTipoUsuario(request, response) {
         try {            
+
+            const{ cod_tipoUsuario, descricao} = request.body;
+            const sql = `INSERT INTO TipoUsuario ( cod_tipoUsuario, descricao) 
+            VALUES (?,?)`;
+            const values =[ cod_tipoUsuario, descricao];
+            const exeSql = await db.query(sql, values);
+            const usu_id = exeSql[0].insertId;
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de usuários.', 
-                dados: null
+                dados: usu_id
             });
         } catch (error) {
             return response.status(500).json({

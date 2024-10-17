@@ -27,11 +27,20 @@ module.exports = {
         }
     }, 
     async cadastrarTreinoUsuarioExercicio(request, response) {
-        try {            
+        try {        
+            
+            const{cod_tue, cod_ta, cod_exe, carga_tue, series_tue, repeticoes_tue} = request.body;
+            const sql = `INSERT INTO TreinoUsuarioExercicio (cod_tue, cod_ta, cod_exe, carga_tue, series_tue, repeticoes_tue) 
+            VALUES (?,?,?,?,?,?)`;
+            const values =[ cod_tue, cod_ta, cod_exe, carga_tue, series_tue, repeticoes_tue];
+            const execSql = await db.query(sql, values);
+            const usu_id = execSql[0].insertId;
+
+
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Cadastro de Treino dos Exercicios do Usuario.', 
-                dados: null
+                dados: usu_id
             });
         } catch (error) {
             return response.status(500).json({
