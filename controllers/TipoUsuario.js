@@ -49,11 +49,20 @@ module.exports = {
         }
     }, 
     async editarTipoUsuario(request, response) {
-        try {            
+        try {    
+            
+            const{ descricao } = request.body;
+            const {cod_tipoUsuario} = request.params;
+            const sql =`UPDATE TipoUsuario SET descricao = ? 
+            WHERE cod_tipoUsuario = ? ;`;
+            const values=[descricao, cod_tipoUsuario];
+            const atualizaDados= await db.query(sql, values);
+
+
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Editar usuários.', 
-                dados: null
+                mensagem: `TipoUsuario ${cod_tipoUsuario} atualizado com sucesso`, 
+                dados: atualizaDados[0].affectedRows
             });
         } catch (error) {
             return response.status(500).json({

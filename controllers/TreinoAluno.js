@@ -49,11 +49,20 @@ module.exports = {
         }
     }, 
     async editarTreinoAluno(request, response) {
-        try {            
+        try {         
+            
+            const{ cod_aln, cod_treino, data_inicio_ta } = request.body;
+            const {cod_ta} = request.params;
+            const sql =`UPDATE treinoAluno SET cod_aln=?, cod_treino=?, cod_ta=?, data_inicio_ta=? 
+            WHERE cod_ta = ? ;`;
+            const values=[cod_aln, cod_treino, cod_ta, data_inicio_ta, cod_ta];
+            const atualizaDados= await db.query(sql, values);
+
+
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Editar treino do Aluno.', 
-                dados: null
+                mensagem: `TreinoAluno ${cod_ta} atualizado com sucesso`, 
+                dados: atualizaDados[0].affectedRows
             });
         } catch (error) {
             return response.status(500).json({

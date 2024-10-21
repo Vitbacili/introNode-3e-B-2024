@@ -51,10 +51,18 @@ module.exports = {
     }, 
     async editarTreinoExercicios(request, response) {
         try {            
+
+            const{ series_te, repeticoes_te} = request.body;
+            const {cod_treino, cod_exe} = request.params;
+            const sql =`UPDATE TreinoExercicios SET series_te=?, repeticoes_te=?
+            WHERE cod_treino=?, cod_exe = ? ;`;
+            const values=[series_te, repeticoes_te,cod_treino,cod_exe];
+            const atualizaDados= await db.query(sql, values);
+
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Editar Treino dos Exercicios.', 
-                dados: null
+                mensagem: `TreinoExercicios ${cod_treino,cod_exe} atualizado com sucesso`, 
+                dados: atualizaDados[0].affectedRows
             });
         } catch (error) {
             return response.status(500).json({

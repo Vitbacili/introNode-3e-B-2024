@@ -39,23 +39,23 @@ router.patch('/exercicios/:cod_exe', ExerciciosController.editarExercicios);
 
 router.get('/TipoUsuario', TipoUsuarioController.listarTipoUsuario); 
 router.post('/TipoUsuario', TipoUsuarioController.cadastrarTipoUsuario); 
-router.patch('/TipoUsuario', TipoUsuarioController.editarTipoUsuario); 
+router.patch('/TipoUsuario/:cod_tipoUsuario', TipoUsuarioController.editarTipoUsuario); 
 router.delete('/TipoUsuario', TipoUsuarioController.apagarTipoUsuario); 
 
 
 router.get('/treino', TreinoController.listarTreino); 
 router.post('/treino', TreinoController.cadastrarTreino); 
-router.patch('/treino', TreinoController.editarTreino); 
+router.patch('/treino/:cod_treino', TreinoController.editarTreino); 
 
 
 router.get('/TreinoAluno', TreinoAlunoController.listarTreinoAluno); 
 router.post('/TreinoAluno', TreinoAlunoController.cadastrarTreinoAluno); 
-router.patch('/TreinoAluno', TreinoAlunoController.editarTreinoAluno); 
+router.patch('/TreinoAluno/:cod_ta', TreinoAlunoController.editarTreinoAluno); 
 
 
 router.get('/TreinoExercicios', TreinoExerciciosController.listarTreinoExercicios); 
 router.post('/TreinoExercicios', TreinoExerciciosController.cadastrarTreinoExercicios); 
-router.patch('/TreinoExercicios', TreinoExerciciosController.editarTreinoExercicios); 
+router.patch('/TreinoExercicios/:cod_treino/cod_exe', TreinoExerciciosController.editarTreinoExercicios); 
 router.delete('/TreinoExercicios', TreinoExerciciosController.apagarTreinoExercicios); 
 
 
