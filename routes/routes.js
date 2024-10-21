@@ -17,24 +17,24 @@ const TreinoUsuarioExercicioController = require('../controllers/TreinoUsuarioEx
 // definição das rotas
 router.get('/usuarios', UsuariosController.listarUsuarios); 
 router.post('/usuarios', UsuariosController.cadastrarUsuarios); 
-router.patch('/usuarios/:usu_id', UsuariosController.editarUsuarios); 
+router.patch('/usuarios/:cod_usu', UsuariosController.editarUsuarios); 
 router.delete('/usuarios', UsuariosController.apagarUsuarios); 
 
 
 router.get('/plano', PlanoController.listarPlano); 
 router.post('/plano', PlanoController.cadastrarPlano); 
-router.patch('/plano', PlanoController.editarPlano); 
+router.patch('/plano/:cod_plano', PlanoController.editarPlano); 
 
 
 router.get('/alunos', AlunosController.listarAlunos); 
 router.post('/alunos', AlunosController.cadastrarAlunos); 
-router.patch('/alunos', AlunosController.editarAlunos); 
+router.patch('/alunos/:cod_aln', AlunosController.editarAlunos); 
 router.delete('/alunos', AlunosController.apagarAlunos); 
 
 
 router.get('/exercicios', ExerciciosController.listarExercicios); 
 router.post('/exercicios', ExerciciosController.cadastrarExercicios); 
-router.patch('/exercicios', ExerciciosController.editarExercicios); 
+router.patch('/exercicios/:cod_exe', ExerciciosController.editarExercicios); 
 
 
 router.get('/TipoUsuario', TipoUsuarioController.listarTipoUsuario); 

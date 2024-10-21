@@ -49,11 +49,20 @@ module.exports = {
         }
     }, 
     async editarExercicios(request, response) {
-        try {            
+        try {      
+
+            const{ nome_exe, descricao_exe, gif_exe} = request.body;
+            const {cod_exe} = request.params;
+            const sql =`UPDATE exercicio SET nome_exe=?, descricao_exe=?, gif_exe=?
+            WHERE cod_exe= ? ;`;
+            const values=[nome_exe, descricao_exe, gif_exe,cod_exe];
+            const atualizaDados= await db.query(sql, values);      
+            
+            
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Editar Exercicios.', 
-                dados: null
+                mensagem: `Exercicio ${cod_exe} atualizado com sucesso`, 
+                dados: atualizaDados[0].affectedRows
             });
         } catch (error) {
             return response.status(500).json({

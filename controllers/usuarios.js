@@ -55,18 +55,18 @@ module.exports = {
     async editarUsuarios(request, response) {
         try { 
               
-            const { cod_usu, login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf } = request.body;
-            const { usu_id } = request.params;
+            const { login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf } = request.body;
+            const { cod_usu } = request.params;
 
-            const sql = `UPDATE usuarios SET cod_usu = ?, login_usu = ?, senha_usu = ?, dataCadastro_usu = ?, dataBloqueio_usu = ?, 
-            cod_tipoUsuario = ?, nome_usu = ?, cpf = ? WHERE usu_id = ?;`;
+            const sql = `UPDATE usuarios SET login_usu = ?, senha_usu = ?, dataCadastro_usu = ?, dataBloqueio_usu = ?, 
+            cod_tipoUsuario = ?, nome_usu = ?, cpf = ? WHERE cod_usu = ?;`;
             
-            const values = [cod_usu, login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf, usu_id];
+            const values = [login_usu, senha_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf, cod_usu];
             const atualizaDados = await db.query(sql, values);
             
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Usuário ${usu_id} atualiazado com sucesso!', 
+                mensagem: `Usuário ${cod_usu} atualiazado com sucesso!`, 
                 dados: atualizaDados[0].affectedRows
             });
         } catch (error) {

@@ -53,11 +53,20 @@ module.exports = {
         }
     }, 
     async editarPlano(request, response) {
-        try {            
+        try {         
+            
+            const{ descricao_plano, valor_plano, detalhes_plano} = request.body;
+            const {cod_plano} = request.params;
+            const sql =`UPDATE plano SET descricao_plano = ? , valor_plano = ? , detalhes_plano = ?
+            WHERE cod_plano = ? ;`;
+            const values=[descricao_plano, valor_plano, detalhes_plano, cod_plano];
+            const atualizaDados= await db.query(sql, values);
+            
+
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Editar plano.', 
-                dados: null
+                mensagem: `Plano ${cod_plano} atualizado com sucesso `, 
+                dados: atualizaDados[0].affectedRows
             });
         } catch (error) {
             return response.status(500).json({
