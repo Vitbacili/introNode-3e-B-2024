@@ -77,11 +77,18 @@ module.exports = {
         }
     }, 
     async apagarAlunos(request, response) {
-        try {            
-            return response.status(200).json({
-                sucesso: true, 
-                mensagem: 'Apagar alunos.', 
-                dados: null
+        try {  
+            const {cod_aln}=request.params;
+            const sql= `DELETE FROM alunos WHERE cod_aln=?`;
+            const values=[cod_aln];
+            const excluir = await db.query(sql,values);
+  
+              return response.status(200).json({
+                  sucesso: true, 
+                  mensagem: `usuario ${cod_aln} excluido com sucesso `, 
+                  dados: excluir[0].affectedRows
+
+
             });
         } catch (error) {
             return response.status(500).json({

@@ -54,8 +54,9 @@ module.exports = {
 
             const{ series_te, repeticoes_te} = request.body;
             const {cod_treino, cod_exe} = request.params;
+        
             const sql =`UPDATE TreinoExercicios SET series_te=?, repeticoes_te=?
-            WHERE cod_treino=?, cod_exe = ? ;`;
+            WHERE cod_treino=? AND cod_exe = ? ;`;
             const values=[series_te, repeticoes_te,cod_treino,cod_exe];
             const atualizaDados= await db.query(sql, values);
 
@@ -74,10 +75,16 @@ module.exports = {
     }, 
     async apagarTreinoExercicios(request, response) {
         try {            
-            return response.status(200).json({
-                sucesso: true, 
-                mensagem: 'Apagar Treinos dos Exercicios.', 
-                dados: null
+            const {cod_treino,cod_exe}=request.params;
+            const sql= `DELETE FROM treinoexercicios WHERE cod_treino=? AND cod_exe=?`;
+            const values=[cod_treino,cod_exe];
+            const excluir = await db.query(sql,values);
+  
+              return response.status(200).json({
+                  sucesso: true, 
+                  mensagem: `usuario ${cod_treino,cod_exe} excluido com sucesso `, 
+                  dados: excluir[0].affectedRows
+            
             });
         } catch (error) {
             return response.status(500).json({

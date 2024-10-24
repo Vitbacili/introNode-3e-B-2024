@@ -18,7 +18,7 @@ const TreinoUsuarioExercicioController = require('../controllers/TreinoUsuarioEx
 router.get('/usuarios', UsuariosController.listarUsuarios); 
 router.post('/usuarios', UsuariosController.cadastrarUsuarios); 
 router.patch('/usuarios/:cod_usu', UsuariosController.editarUsuarios); 
-router.delete('/usuarios', UsuariosController.apagarUsuarios); 
+router.delete('/usuarios/:cod_usu', UsuariosController.apagarUsuarios); 
 
 
 router.get('/plano', PlanoController.listarPlano); 
@@ -29,7 +29,7 @@ router.patch('/plano/:cod_plano', PlanoController.editarPlano);
 router.get('/alunos', AlunosController.listarAlunos); 
 router.post('/alunos', AlunosController.cadastrarAlunos); 
 router.patch('/alunos/:cod_aln', AlunosController.editarAlunos); 
-router.delete('/alunos', AlunosController.apagarAlunos); 
+router.delete('/alunos/:cod_aln', AlunosController.apagarAlunos); 
 
 
 router.get('/exercicios', ExerciciosController.listarExercicios); 
@@ -40,7 +40,7 @@ router.patch('/exercicios/:cod_exe', ExerciciosController.editarExercicios);
 router.get('/TipoUsuario', TipoUsuarioController.listarTipoUsuario); 
 router.post('/TipoUsuario', TipoUsuarioController.cadastrarTipoUsuario); 
 router.patch('/TipoUsuario/:cod_tipoUsuario', TipoUsuarioController.editarTipoUsuario); 
-router.delete('/TipoUsuario', TipoUsuarioController.apagarTipoUsuario); 
+router.delete('/TipoUsuario/:cod_tipoUsuario', TipoUsuarioController.apagarTipoUsuario); 
 
 
 router.get('/treino', TreinoController.listarTreino); 
@@ -55,13 +55,13 @@ router.patch('/TreinoAluno/:cod_ta', TreinoAlunoController.editarTreinoAluno);
 
 router.get('/TreinoExercicios', TreinoExerciciosController.listarTreinoExercicios); 
 router.post('/TreinoExercicios', TreinoExerciciosController.cadastrarTreinoExercicios); 
-router.patch('/TreinoExercicios/:cod_treino/cod_exe', TreinoExerciciosController.editarTreinoExercicios); 
-router.delete('/TreinoExercicios', TreinoExerciciosController.apagarTreinoExercicios); 
+router.patch('/TreinoExercicios/:cod_treino/:cod_exe', TreinoExerciciosController.editarTreinoExercicios); 
+router.delete('/TreinoExercicios/:cod_treino/:cod_exe', TreinoExerciciosController.apagarTreinoExercicios); 
 
 
 router.get('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.listarTreinoUsuarioExercicio); 
 router.post('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.cadastrarTreinoUsuarioExercicio); 
-router.patch('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.editarTreinoUsuarioExercicio); 
+router.patch('/TreinoUsuarioExercicio/:cod_tue', TreinoUsuarioExercicioController.editarTreinoUsuarioExercicio); 
 router.delete('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.apagarTreinoUsuarioExercicio); 
 
 module.exports = router;

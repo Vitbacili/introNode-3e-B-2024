@@ -79,10 +79,19 @@ module.exports = {
     }, 
     async apagarUsuarios(request, response) {
         try {            
+
+          const {cod_usu}=request.params;
+          const sql= `DELETE FROM usuarios WHERE cod_usu=?`;
+          const values=[cod_usu];
+          const excluir = await db.query(sql,values);
+
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Apagar usuários.', 
-                dados: null
+                mensagem: `usuario ${cod_usu} excluido com sucesso `, 
+                dados: excluir[0].affectedRows
+
+
+                
             });
         } catch (error) {
             return response.status(500).json({

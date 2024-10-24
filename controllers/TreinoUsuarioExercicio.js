@@ -53,17 +53,17 @@ module.exports = {
     async editarTreinoUsuarioExercicio(request, response) {
         try {
 
-            const{ cod_tue, cod_ta, cod_exe, carga_tue, series_tue, repeticoes_tue} = request.body;
-            const {cod_ta} = request.params;
-            const sql =`UPDATE plano SET cod_exe, carga_tue, series_tue, repeticoes_tue
-            WHERE cod_ta = ? ;`;
-            const values=[descricao_plano, valor_plano, detalhes_plano, cod_ta];
+            const{  cod_ta, cod_exe, carga_tue, series_tue, repeticoes_tue} = request.body;
+            const {cod_tue} = request.params;
+            const sql =`UPDATE treinousuarioexercicio SET cod_ta=?, cod_exe=?, carga_tue=?, series_tue=?, repeticoes_tue=?
+            WHERE cod_tue = ? ;`;
+            const values=[cod_ta, cod_exe, carga_tue, series_tue, repeticoes_tue,cod_tue];
             const atualizaDados= await db.query(sql, values);
             
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Editar Treino de Exercicios do Usuario.', 
-                dados: null
+                mensagem: `TreinoUsuarioExercicios ${cod_tue} atualizado com sucesso`, 
+                dados: atualizaDados[0].affectedRows
             });
         } catch (error) {
             return response.status(500).json({
