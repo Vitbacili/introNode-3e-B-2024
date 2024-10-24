@@ -74,11 +74,19 @@ module.exports = {
         }
     }, 
     async apagarTreinoUsuarioExercicio(request, response) {
-        try {            
-            return response.status(200).json({
-                sucesso: true, 
-                mensagem: 'Apagar Treino de Exercicios do Usuario.', 
-                dados: null
+        try { 
+
+            const {cod_tue}=request.params;
+            const sql= `DELETE FROM treinousuarioexercicio WHERE cod_tue=?`;
+            const values=[cod_tue];
+            const excluir = await db.query(sql,values);
+  
+              return response.status(200).json({
+                  sucesso: true, 
+                  mensagem: `usuario ${cod_tue} excluido com sucesso `, 
+                  dados: excluir[0].affectedRows
+
+
             });
         } catch (error) {
             return response.status(500).json({

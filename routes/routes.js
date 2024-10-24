@@ -62,6 +62,6 @@ router.delete('/TreinoExercicios/:cod_treino/:cod_exe', TreinoExerciciosControll
 router.get('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.listarTreinoUsuarioExercicio); 
 router.post('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.cadastrarTreinoUsuarioExercicio); 
 router.patch('/TreinoUsuarioExercicio/:cod_tue', TreinoUsuarioExercicioController.editarTreinoUsuarioExercicio); 
-router.delete('/TreinoUsuarioExercicio', TreinoUsuarioExercicioController.apagarTreinoUsuarioExercicio); 
+router.delete('/TreinoUsuarioExercicio/:cod_tue', TreinoUsuarioExercicioController.apagarTreinoUsuarioExercicio); 
 
 module.exports = router;
