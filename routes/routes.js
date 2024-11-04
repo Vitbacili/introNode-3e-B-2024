@@ -12,6 +12,7 @@ const TreinoController = require('../controllers/treino');
 const TreinoAlunoController = require('../controllers/TreinoAluno');
 const TreinoExerciciosController = require('../controllers/TreinoExercicios');
 const TreinoUsuarioExercicioController = require('../controllers/TreinoUsuarioExercicio');
+const usuarios = require('../controllers/usuarios');
 
 
 // definição das rotas
@@ -19,6 +20,7 @@ router.get('/usuarios', UsuariosController.listarUsuarios);
 router.post('/usuarios', UsuariosController.cadastrarUsuarios); 
 router.patch('/usuarios/:cod_usu', UsuariosController.editarUsuarios); 
 router.delete('/usuarios/:cod_usu', UsuariosController.apagarUsuarios); 
+router.post('/usuarios/login', UsuariosController.login);
 
 
 router.get('/plano', PlanoController.listarPlano); 

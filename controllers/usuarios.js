@@ -101,4 +101,39 @@ module.exports = {
             });
         }
     }, 
+    async login(request, response) {
+        try {
+          const { login_usu, senha_usu } = request.body;
+
+          const sql = `SELECT cod_usu, dataCadastro_usu, dataBloqueio_usu, cod_tipoUsuario, nome_usu, cpf FROM usuarios WHERE login_usu = ? AND senha_usu = ? 
+          ;`;
+          
+          const values = [login_usu, senha_usu];
+
+          const usuarios = await db.query(sql, values);
+          const nItens = usuarios[0].length;
+      
+          if (nItens < 1) {
+            return response.status(403).json({
+              sucesso: false,
+              mensagem: 'Login e/ou senha inválido.',
+              dados: null,
+            });
+          }
+      
+          return response.status(200).json({
+            sucesso: true,
+            mensagem: 'Login efetuado com sucesso',
+            dados: usuarios[0],
+          });
+
+        } catch (error) {
+          return response.status(500).json({
+            sucesso: false,
+            mensagem: 'Erro na requisição.',
+            dados: error.message
+          });
+        }
+      }
+      
 };  
